@@ -100,6 +100,12 @@ function getClasses(content) {
     from = content.indexOf('exports.locals = {');
   }
 
+  // FIX START: fix for empty classes for gatsby
+  if (from === -1) {
+    from = content.indexOf('export default {')
+  }
+  // FIX END
+
   if (~from) {
     content = content.slice(from);
 
